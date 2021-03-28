@@ -11,6 +11,13 @@ services:
       - ./mongo-entrypoint:/docker-entrypoint-initdb.d
       - mongodb:/data/db
       - mongoconfig:/data/configdb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: "3"
+        labels: "production_status"
+        env: "os"
 
 volumes:
   mongodb:
